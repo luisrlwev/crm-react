@@ -5,9 +5,7 @@ import { agregarCliente } from "../data/Clientes"
 
 export async function action({request}) {
   const formData = await request.formData()
-
   const datos = Object.fromEntries(formData)
-
   const email = formData.get('email')
 
   // Validación
@@ -16,6 +14,7 @@ export async function action({request}) {
     errores.push('Todos los campos son obligatorios')
   }
 
+  // Validación del email
   let regex = new RegExp("([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])");
   if(!regex.test(email)){
     errores.push('El email no es válido')
@@ -26,6 +25,7 @@ export async function action({request}) {
     return errores
   }
 
+  // Agregar el cliente a la bd
   await agregarCliente(datos)
   return redirect('/');
 }
