@@ -1,5 +1,5 @@
 import { Form, useNavigate, useLoaderData, useActionData, redirect } from "react-router-dom"
-import { obtenerCliente, actualizarCliente } from "../data/Clientes"
+import { obtenerCliente, actualizarCliente } from "../data/clientes"
 import Formulario from "../components/Formulario"
 import Error from "../components/Error"
 
